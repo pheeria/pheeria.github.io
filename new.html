@@ -1,41 +1,227 @@
 <!doctype html>
-<html lang="en-US">
+<html lang="de">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>Olzhas Askar</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Olzhas Askar - Schriftsteller</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                background-color: #fff;
+                padding: 1rem;
+            }
+
+            /* Container for max-width */
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            /* Header */
+            header {
+                margin-bottom: 3rem;
+                border-bottom: 2px solid #333;
+                padding-bottom: 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+                color: #000;
+            }
+
+            header h2 {
+                font-size: 1.5rem;
+                font-weight: 400;
+                color: #666;
+                margin-bottom: 1.5rem;
+            }
+
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                font-size: 1rem;
+            }
+
+            nav a {
+                color: #333;
+                text-decoration: underline;
+                transition: color 0.2s;
+            }
+
+            nav a:hover {
+                color: #000;
+            }
+
+            /* Main content */
+            main {
+                margin-bottom: 3rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+                font-weight: 600;
+                margin-bottom: 2rem;
+                color: #000;
+            }
+
+            /* Events */
+            .events-list {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            article.event {
+                border-left: 3px solid #333;
+                padding-left: 1.5rem;
+                transition: opacity 0.3s;
+            }
+
+            article.event.past {
+                opacity: 0.6;
+                border-left-color: #999;
+            }
+
+            article.event time {
+                display: block;
+                font-size: 0.875rem;
+                font-weight: 600;
+                color: #666;
+                margin-bottom: 0.5rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+
+            article.event h3 {
+                font-size: 1.25rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            article.event h3 a {
+                color: #000;
+                text-decoration: none;
+                border-bottom: 2px solid transparent;
+                transition: border-bottom-color 0.2s;
+            }
+
+            article.event h3 a:hover {
+                border-bottom-color: #333;
+            }
+
+            article.event .story {
+                font-style: italic;
+                color: #555;
+                margin-bottom: 0.25rem;
+            }
+
+            article.event .theme {
+                font-size: 0.875rem;
+                color: #666;
+                margin-bottom: 0.75rem;
+            }
+
+            article.event address {
+                font-style: normal;
+                font-size: 0.875rem;
+                color: #666;
+                line-height: 1.5;
+            }
+
+            article.event address a {
+                color: #333;
+                text-decoration: underline;
+            }
+
+            article.event address a:hover {
+                color: #000;
+            }
+
+            /* Footer */
+            footer {
+                padding-top: 2rem;
+                border-top: 1px solid #ddd;
+                text-align: center;
+                color: #999;
+                font-size: 0.875rem;
+            }
+
+            /* Responsive design */
+            @media (max-width: 600px) {
+                body {
+                    padding: 0.75rem;
+                }
+
+                h1 {
+                    font-size: 2rem;
+                }
+
+                header h2 {
+                    font-size: 1.25rem;
+                }
+
+                section h2 {
+                    font-size: 1.5rem;
+                }
+
+                article.event {
+                    padding-left: 1rem;
+                }
+
+                nav {
+                    flex-direction: column;
+                    gap: 0.75rem;
+                }
+            }
+
+            @media (min-width: 900px) {
+                body {
+                    padding: 2rem;
+                }
+
+                header {
+                    margin-bottom: 4rem;
+                }
+
+                .events-list {
+                    gap: 2.5rem;
+                }
+            }
+        </style>
     </head>
     <body>
-        <h1>Olzhas Askar</h1>
-        <h2>Schriftsteller</h2>
-        <p>Was ich <a href="https://github.com/overleaf/overleaf">hauptberuflich schreibe</a></p>
-        <p>Was ich <a href="https://www.goodreads.com/olzhas">lese</a></p>
+        <div class="container">
+            <header>
+                <h1>Olzhas Askar</h1>
+                <h2>Schriftsteller</h2>
+                <nav>
+                    <a href="https://github.com/overleaf/overleaf" target="_blank" rel="noopener">Was ich hauptberuflich schreibe</a>
+                    <a href="https://www.goodreads.com/olzhas" target="_blank" rel="noopener">Was ich lese</a>
+                </nav>
+            </header>
 
+            <main>
+                <section id="events-section">
+                    <h2>Termine</h2>
+                    <div class="events-list" id="events-list"></div>
+                </section>
+            </main>
 
-        <h2>Termine</h2>
-        <ul id="events">
-            <li>
-                <input type="date" value="2026-01-11" readonly/>
-                <a href="https://www.lettretage.de/Termine/kurze-kippen-die-short-stories-night/">Kurze Kippen (Short Stories Night)</a>
-                <a href="https://www.lettretage.de">Lettrétage e. V.</a>
-                <p>Ein Wort</p>
-            </li>
-
-            <li>
-                <input type="date" value="2025-11-09" readonly/>
-                <a href="https://www.lettretage.de/Termine/kurze-kippen-die-short-stories-night/">Kurze Kippen (Short Stories Night)</a>
-                <a href="https://www.lettretage.de">Lettrétage e. V.</a>
-                <p>Die Apfelsine</p>
-            </li>
-
-            <li>
-                <input type="date" value="2025-07-17" readonly/>
-                <a href="https://www.lettretage.de/Termine/kurze-kippen-die-short-stories-night/">Kurze Kippen (Short Stories Night)</a>
-                <a href="https://www.lettretage.de">Lettrétage e. V.</a>
-                <p>Preise</p>
-            </li>
-
-        </ul>
+            <footer>
+                <p>&copy; 2026 Olzhas Askar</p>
+            </footer>
+        </div>
 
         <script>
             var events = [
@@ -116,8 +302,83 @@
                     location_web: "https://www.lettretage.de",
                     location_address: "Veteranenstraße 21, 10119 Berlin",
                 },
-            ]
-        </script>
+            ];
 
-  </body>
+            // Format date in German locale
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                const options = { day: 'numeric', month: 'long', year: 'numeric' };
+                return date.toLocaleDateString('de-DE', options);
+            }
+
+            // Render events
+            function renderEvents() {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); // Reset time to midnight for comparison
+
+                // Sort events by date (descending - newest first)
+                const sortedEvents = events.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                const eventsList = document.getElementById('events-list');
+
+                sortedEvents.forEach(event => {
+                    const eventDate = new Date(event.date);
+                    const isPast = eventDate < today;
+
+                    // Create article element
+                    const article = document.createElement('article');
+                    article.className = 'event' + (isPast ? ' past' : '');
+
+                    // Date
+                    const time = document.createElement('time');
+                    time.setAttribute('datetime', event.date);
+                    time.textContent = formatDate(event.date);
+                    article.appendChild(time);
+
+                    // Event name (as heading with link)
+                    const h3 = document.createElement('h3');
+                    const eventLink = document.createElement('a');
+                    eventLink.href = event.link;
+                    eventLink.target = '_blank';
+                    eventLink.rel = 'noopener';
+                    eventLink.textContent = event.name;
+                    h3.appendChild(eventLink);
+                    article.appendChild(h3);
+
+                    // Story title
+                    if (event.story) {
+                        const storyP = document.createElement('p');
+                        storyP.className = 'story';
+                        storyP.textContent = event.story;
+                        article.appendChild(storyP);
+                    }
+
+                    // Theme
+                    if (event.theme) {
+                        const themeP = document.createElement('p');
+                        themeP.className = 'theme';
+                        themeP.textContent = 'Thema: ' + event.theme;
+                        article.appendChild(themeP);
+                    }
+
+                    // Location
+                    const address = document.createElement('address');
+                    const locationLink = document.createElement('a');
+                    locationLink.href = event.location_web;
+                    locationLink.target = '_blank';
+                    locationLink.rel = 'noopener';
+                    locationLink.textContent = event.location_name;
+                    address.appendChild(locationLink);
+                    address.appendChild(document.createElement('br'));
+                    address.appendChild(document.createTextNode(event.location_address));
+                    article.appendChild(address);
+
+                    eventsList.appendChild(article);
+                });
+            }
+
+            // Initialize on page load
+            document.addEventListener('DOMContentLoaded', renderEvents);
+        </script>
+    </body>
 </html>
