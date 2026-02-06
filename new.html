@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Olzhas Askar - Schriftsteller</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
         <style>
             * {
                 margin: 0;
@@ -123,12 +124,6 @@
             article.event .story {
                 font-style: italic;
                 color: #555;
-                margin-bottom: 0.25rem;
-            }
-
-            article.event .theme {
-                font-size: 0.875rem;
-                color: #666;
                 margin-bottom: 0.75rem;
             }
 
@@ -152,9 +147,11 @@
             footer {
                 padding-top: 2rem;
                 border-top: 1px solid #ddd;
-                text-align: center;
                 color: #999;
                 font-size: 0.875rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
             }
 
             /* Responsive design */
@@ -183,6 +180,12 @@
                     flex-direction: column;
                     gap: 0.75rem;
                 }
+
+                footer {
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    align-items: flex-start;
+                }
             }
 
             @media (min-width: 900px) {
@@ -208,9 +211,8 @@
                 <nav>
                     <a href="https://github.com/overleaf/overleaf" target="_blank" rel="noopener">Was ich hauptberuflich schreibe</a>
                     <a href="https://www.goodreads.com/olzhas" target="_blank" rel="noopener">Was ich lese</a>
+                    <a href="https://t.me/vermelholanguages" target="_blank" rel="noopener">Was ich über Sprachen weiß</a>
                 </nav>
-                <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="vermelholanguages/101" data-width="100%" data-color="00AFCA"></script>
-                Kontakt: olzhas.askar at gmail.com
             </header>
 
             <main>
@@ -221,6 +223,7 @@
             </main>
 
             <footer>
+                <p>olzhas.askar at gmail.com</p>
                 <p>&copy; 2026 Olzhas Askar</p>
             </footer>
         </div>
@@ -318,8 +321,27 @@
                 const today = new Date();
                 today.setHours(0, 0, 0, 0); // Reset time to midnight for comparison
 
-                // Sort events by date (descending - newest first)
-                const sortedEvents = events.sort((a, b) => new Date(b.date) - new Date(a.date));
+                // Separate upcoming and past events
+                const upcomingEvents = [];
+                const pastEvents = [];
+
+                events.forEach(event => {
+                    const eventDate = new Date(event.date);
+                    if (eventDate >= today) {
+                        upcomingEvents.push(event);
+                    } else {
+                        pastEvents.push(event);
+                    }
+                });
+
+                // Sort upcoming events ascending (closest first)
+                upcomingEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+                // Sort past events descending (most recent first)
+                pastEvents.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                // Combine: upcoming first, then past
+                const sortedEvents = [...upcomingEvents, ...pastEvents];
 
                 const eventsList = document.getElementById('events-list');
 
@@ -347,20 +369,16 @@
                     h3.appendChild(eventLink);
                     article.appendChild(h3);
 
-                    // Story title
+                    // Story title with theme on same line
                     if (event.story) {
                         const storyP = document.createElement('p');
                         storyP.className = 'story';
-                        storyP.textContent = event.story;
+                        let storyText = event.story;
+                        if (event.theme) {
+                            storyText += ' — Thema: ' + event.theme;
+                        }
+                        storyP.textContent = storyText;
                         article.appendChild(storyP);
-                    }
-
-                    // Theme
-                    if (event.theme) {
-                        const themeP = document.createElement('p');
-                        themeP.className = 'theme';
-                        themeP.textContent = 'Thema: ' + event.theme;
-                        article.appendChild(themeP);
                     }
 
                     // Location
