@@ -121,6 +121,16 @@
                 border-bottom-color: #00AFCA;
             }
 
+            article.event h3 a.report-link {
+                color: #00AFCA;
+                border-bottom: none;
+            }
+
+            article.event h3 a.report-link:hover {
+                color: #008ba8;
+                border-bottom: 1px solid #008ba8;
+            }
+
             article.event .story {
                 font-style: italic;
                 color: #555;
@@ -367,6 +377,19 @@
                     eventLink.rel = 'noopener';
                     eventLink.textContent = event.name;
                     h3.appendChild(eventLink);
+
+                    // Add report link if exists
+                    if (event.report) {
+                        h3.appendChild(document.createTextNode(' '));
+                        const reportLink = document.createElement('a');
+                        reportLink.href = event.report;
+                        reportLink.target = '_blank';
+                        reportLink.rel = 'noopener';
+                        reportLink.className = 'report-link';
+                        reportLink.textContent = '[Bericht]';
+                        h3.appendChild(reportLink);
+                    }
+
                     article.appendChild(h3);
 
                     // Story title with theme on same line
@@ -375,7 +398,7 @@
                         storyP.className = 'story';
                         let storyText = event.story;
                         if (event.theme) {
-                            storyText += ' — Thema: ' + event.theme;
+                            storyText += ' (Thema: ' + event.theme + ')';
                         }
                         storyP.textContent = storyText;
                         article.appendChild(storyP);
