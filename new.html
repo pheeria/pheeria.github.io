@@ -60,7 +60,7 @@
             }
 
             nav a:hover {
-                color: #000;
+                color: #00AFCA;
             }
 
             /* Main content */
@@ -83,7 +83,7 @@
             }
 
             article.event {
-                border-left: 3px solid #333;
+                border-left: 3px solid #00AFCA;
                 padding-left: 1.5rem;
                 transition: opacity 0.3s;
             }
@@ -117,7 +117,7 @@
             }
 
             article.event h3 a:hover {
-                border-bottom-color: #333;
+                border-bottom-color: #00AFCA;
             }
 
             article.event .story {
@@ -145,7 +145,7 @@
             }
 
             article.event address a:hover {
-                color: #000;
+                color: #00AFCA;
             }
 
             /* Footer */
@@ -209,6 +209,8 @@
                     <a href="https://github.com/overleaf/overleaf" target="_blank" rel="noopener">Was ich hauptberuflich schreibe</a>
                     <a href="https://www.goodreads.com/olzhas" target="_blank" rel="noopener">Was ich lese</a>
                 </nav>
+                <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="vermelholanguages/101" data-width="100%" data-color="00AFCA"></script>
+                Kontakt: olzhas.askar at gmail.com
             </header>
 
             <main>
@@ -369,8 +371,7 @@
                     locationLink.rel = 'noopener';
                     locationLink.textContent = event.location_name;
                     address.appendChild(locationLink);
-                    address.appendChild(document.createElement('br'));
-                    address.appendChild(document.createTextNode(event.location_address));
+                    address.appendChild(document.createTextNode(', ' + event.location_address));
                     article.appendChild(address);
 
                     eventsList.appendChild(article);
